@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script src="web3.js"></script>
+        <script>
+            var Web3 = require('web3');
+            var web3 = new Web3();
+            //connect to the node
+            web3.setProvider(new
+            web3.providers.HttpProvider('http://localhost:8545'));
+            var account;
+            function sendMoney(toaccount, amount, password) {
+                
+            }
+            
+            function getAccounts() {
+                web3.eth.getCoinbase((err, address) => {
+                    if (err) {
+                        document.getElementById('baseAccounts').innerHTML =  error;
+                    }
+                    else {
+                        account = address;
+                        document.getElementById('baseAccounts').innerHTML = address;
+                    }
+                }
+                )};
+                function getBalance(){
+                        account = web3.eth.account[0]
+                        web3.eth.getBalance(account, (error,balance) =>{
+                    if (error) {
+                        document.getElementById('baseBalance').innerHTML =  error;
+                    }
+                    else {
+                        document.getElementById('baseBalance').innerHTML = web3.fromWei(balance,"ether") + ' ether';
+                    }
+                });
+                }
+        </script>
+    </head>
+    <body onload ="getAccounts(),getBalance()">
+        <h1>Node 1</h1>
+        <h1>Money Transfer</h1><hr>
+        <h2>Main Account Info</h2>
+        <div>Address:<span id="baseAccounts"><span></div><br>
+        <div>Balance:<span id="baseBalance"><span></div><hr>
+        <label for="transfer-to">Transfer to: </label>
+        <input style="width: 40%" type="text" id="">
+        <label for="transfer-to">Amount (ether): </label>
+        <input type="text" id="index" name="fname">
+        <label for="transfer-to">pass pharase: </label>
+        <input type="text" id="index" name="fname"></br>
+        <button type="button" onclick="sendTranscation()">Send</button><hr>
+        <div id="listOfAccounts"></div>
+        </body>
+</html>
